@@ -1,25 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import './App.css'
+import Footer from "./components/Common/Footer/Footer";
+import Header from "./components/Common/Header/Header";
+import Home from "./components/User/Home/Home";
+import Login from "./components/Login/Login";
+import Order from "./components/User/Order/Order";
+import Detail from "./components/User/Order/OrderDetail/Detail";
+import ProductDetails from "./components/User/Product/ProductDetails";
+import SignUp from "./components/SignUp/SignUp";
+import AddProduct from "./components/Admin/AddProduct/AddProduct";
+import DeleteProduct from "./components/Admin/DeleteProduct/DeleteProduct";
+import CartList from "./components/User/Cart/CratList/CartList";
+import CartDetails from "./components/User/Cart/CartDetails/CartDetails";
+import PageNotFound from "./components/NotFound/PageNotFound";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/productDetail/:id" element={<ProductDetails />} />
+        <Route path="/order" element={<Order />} />
+        <Route path="/OrderDatil/:id" element={<Detail />} />
+        <Route path="/cart" element={<CartList/>} />
+        <Route path="/cartDatil/:id" element={<CartDetails />} />
+        <Route path="/addProduct" element={<AddProduct />} />
+        <Route path="/deleteProduct" element={<DeleteProduct />} />
+        <Route path="*" element={<PageNotFound/>} />
+
+      </Routes>
+      <Footer />
+    </Router>
   );
 }
 
